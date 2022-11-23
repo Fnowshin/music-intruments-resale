@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import banner from '../assets/images/banner.png';
 
 const Header = (props) => {
     const menuItems = <React.Fragment>
@@ -10,7 +11,7 @@ const Header = (props) => {
     </React.Fragment>
     return (
         <div>
-             <div className="navbar bg-neutral">
+             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -20,7 +21,8 @@ const Header = (props) => {
                    {menuItems}
                 </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Doctor's Portal </a>
+                <img src={banner} width={70} alt="" />
+                <a className="btn btn-ghost normal-case text-xl">MusEnts </a>
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
