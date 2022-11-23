@@ -4,11 +4,11 @@ import aboutbg from '../../assets/images/aboutbg.png'
 const AboutUs = (props) => {
     return (
         
-        <div className='my-10 bg-gradient-to-r from-primary to-secondary max-w-full'>
+        <div className='mt-10 bg-gradient-to-r from-primary to-secondary max-w-full'>
             <h1 className='pt-10 text-4xl font-semibold'> What Is MusEnts?</h1>
             <p className='text-2xl'>Know About Our Market </p>
                 
-                <div className='my-10 pb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                <div className='mt-10 pb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
 
                     <div>
                         <div className="card-body items-center text-left">
@@ -33,6 +33,8 @@ const AboutUs = (props) => {
                     </div>
 
                 </div>
+                <h1 className=' text-2xl font-semibold'> Have a question? Well, we’ve got some answers.</h1>
+                <button className="mt-6 mb-20 btn btn-outline rounded-full"> Go To Help Centr </button>
             
         </div>
     );
