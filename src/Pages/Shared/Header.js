@@ -17,18 +17,21 @@ const Header = (props) => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/products">Products</Link></li>
         <li><Link to="/blogs">Blogs </Link></li>
-        <li>
             {
-                user?.email ?
+                user?.uid ?
                 <>
-                <Link onClick={handleLogOut} > Log Out </Link>
+                <li> <Link to='/dashboard'> Dashboard </Link></li>
+              <li>
+              <Link onClick={handleLogOut} > Log Out </Link>
+              </li>
                 </>
                 :
                 <>
+                <li>
                 <Link to="/login">Login</Link>
+                </li>
                 </>
             }
-        </li>
     </React.Fragment>
     return (
         <div>

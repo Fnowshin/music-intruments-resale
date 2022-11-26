@@ -1,25 +1,42 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 
 const Signup = (props) => {
 
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUser} = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
     const handleSignUp = event =>{
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
 
+        setSignUpError('')
+
         createUser(email, password)
         .then(result => {
             const user = result.user;
+
+            toast("Successfully Registered");
+            
             console.log(user);
+            const userInfo = {
+                displayName: form.name
+            }
+            updateUser(userInfo)
+            .then(() => {})
+            .catch(err => console.log(err))
             form.reset();
         })
 
-        .catch(err => console.error(err));
+        .catch(err => {
+            console.error(err)
+        setSignUpError(err.message)});
+
+       
         
     }
     return (
@@ -59,7 +76,9 @@ const Signup = (props) => {
                             </div>
                             <div className="form-control mt-6">
                                 <input className='btn btn-primary' type ="submit" value="Sign Up"/>
+                            
                             </div>
+                            { signUpError && <p className='text-red-600'>{signUpError}</p>}
                         </form>
                     </div>
                 </div>
