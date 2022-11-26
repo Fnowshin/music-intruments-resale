@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
@@ -8,6 +8,9 @@ const Signup = (props) => {
 
     const {createUser, updateUser} = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+
+    const navigate = useNavigate();
+
     const handleSignUp = event =>{
         event.preventDefault();
         const form = event.target;
@@ -21,13 +24,15 @@ const Signup = (props) => {
             const user = result.user;
 
             toast("Successfully Registered");
-            
+
             console.log(user);
             const userInfo = {
                 displayName: form.name
             }
             updateUser(userInfo)
-            .then(() => {})
+            .then(() => {
+                navigate('/');
+            })
             .catch(err => console.log(err))
             form.reset();
         })
