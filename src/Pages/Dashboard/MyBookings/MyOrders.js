@@ -34,7 +34,7 @@ const MyOrders = (props) => {
           <tbody>
             {
               bookings.map((booking, i )=>
-                <tr className="hover">
+                <tr key={booking._id} className="hover">
                   <th>{i+1}</th>
                   <td>{booking.productName}</td>
                   <td>{booking.price}</td>

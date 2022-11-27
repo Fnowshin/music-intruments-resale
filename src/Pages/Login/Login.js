@@ -6,7 +6,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = (props) => {
 
-    const {login, providerLogin} = useContext(AuthContext);
+    const {login, providerLogin, userInfo} = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -17,7 +17,8 @@ const Login = (props) => {
           const user = result.user;
           navigate(from, {replace: true});
           console.log(user);
-          
+          saveBuyer(user);
+         
         
         })
         .catch(error => console.error(error));
@@ -36,11 +37,30 @@ const Login = (props) => {
         .then( result => {
             const user = result.user;
             console.log(user);
+           
             navigate(from, {replace: true});
             form.reset();
         })
         .then(error => console.log(error));
     }
+
+    
+    const saveBuyer = (userInfo) => {
+        const user = {userInfo};
+        fetch('http://localhost:5000/buyers', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('save buyer', data);
+            navigate('/');
+        })
+    }
+
     return (
         <div className="hero bg-primary h-[800px]">
             <div className="hero-content flex-col lg:flex-row-reverse">

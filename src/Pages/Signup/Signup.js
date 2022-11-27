@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
@@ -9,29 +9,34 @@ const Signup = (props) => {
     const {createUser, updateUser} = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
 
+    const location = useLocation;
     const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSignUp = event =>{
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
 
         setSignUpError('')
 
-        createUser(email, password)
+        createUser(name, email, password)
         .then(result => {
             const user = result.user;
 
             toast("Successfully Registered");
 
             console.log(user);
+            navigate(from, {replace: true});
             const userInfo = {
                 displayName: form.name
             }
             updateUser(userInfo)
             .then(() => {
-                navigate('/');
+                navigate('/')
             })
             .catch(err => console.log(err))
             form.reset();
@@ -40,10 +45,11 @@ const Signup = (props) => {
         .catch(err => {
             console.error(err)
         setSignUpError(err.message)});
-
-       
+ 
         
     }
+
+
     return (
         <div>
             <div className="hero bg-primary h-[800px]">

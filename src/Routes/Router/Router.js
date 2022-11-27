@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
+import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyBookings/MyOrders";
 import Home from "../../Pages/Home/Home";
@@ -21,7 +22,7 @@ import PrivateRoute from "./PrivateRoute";
             },
             {
                 path:'/productsdetail/:id',
-                element: <ProductsDetail></ProductsDetail>,
+                element: <PrivateRoute><ProductsDetail></ProductsDetail></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
@@ -46,6 +47,10 @@ import PrivateRoute from "./PrivateRoute";
             {
                 path: '/dashboard',
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/buyers',
+                element: <AllBuyers></AllBuyers>
             }
 
         ]
