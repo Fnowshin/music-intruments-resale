@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { toast } from "react-hot-toast";
 
-const BookNowModal = ({bookProduct}) => {
+const BookNowModal = ({bookProduct, setBookProduct}) => {
     const {product_name, picture, resalePrice } = bookProduct;
     const {user} = useContext(AuthContext);
 
@@ -34,8 +34,12 @@ const BookNowModal = ({bookProduct}) => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            toast.success('Booking Confirmed');
-            form.reset();
+            if (data.acknowledged) {
+                setBookProduct(null);
+                toast.success('Booking Confirmed');
+            }
+           
+            
         })
 
     }

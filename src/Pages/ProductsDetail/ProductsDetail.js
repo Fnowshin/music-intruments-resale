@@ -29,6 +29,7 @@ const ProductsDetail = (props) => {
                 bookProduct &&
                 <BookNowModal 
                 bookProduct={bookProduct}
+                setBookProduct={setBookProduct}
                 >
               
                 </BookNowModal>
