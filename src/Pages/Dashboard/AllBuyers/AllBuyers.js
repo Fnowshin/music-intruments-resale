@@ -15,7 +15,17 @@ const AllBuyers = (props) => {
           const data = await res.json();
           return data;
         }
-      })
+      });
+
+      const handleMakeAdmin = id => {
+        fetch(`http://localhost:5000/buyers/admin/${id}`, {
+            method: 'PUT'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+      }
     
 
     return (
@@ -29,7 +39,8 @@ const AllBuyers = (props) => {
                 <th></th>
                 <th>Buyer Name</th>
                 <th>Email </th>
-                <th>Status </th>
+                <th>Admin </th>
+                <th>Delete </th>
               </tr>
             </thead>
             <tbody>
@@ -40,7 +51,8 @@ const AllBuyers = (props) => {
                     <th>{i+1}</th>
                     <td>{buyer.userInfo.displayName}</td>
                     <td>{buyer.userInfo.email}</td>
-                    <td>Purple</td>
+                    <td>{ buyer?.role !== 'admin' &&<button onClick={() => handleMakeAdmin(buyer._id)} className='btn btn-sm btn-primary'> Make Admin </button>}</td>
+                    <td><button className='btn btn-sm btn-danger'> Delete Buyer </button></td>
                   </tr>
                 )
               }

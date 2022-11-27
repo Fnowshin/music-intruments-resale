@@ -9,6 +9,8 @@ import Login from "../../Pages/Login/Login";
 import ProductsDetail from "../../Pages/ProductsDetail/ProductsDetail";
 import PageNotFound from "../../Pages/Shared/PageNotFound";
 import Signup from "../../Pages/Signup/Signup";
+import AdminRoute from "./AdminRoute";
+import BuyersRoute from "./BuyersRoute";
 import PrivateRoute from "./PrivateRoute";
 
  const router = createBrowserRouter([
@@ -46,11 +48,11 @@ import PrivateRoute from "./PrivateRoute";
         children: [
             {
                 path: '/dashboard',
-                element: <MyOrders></MyOrders>
+                element:<BuyersRoute> <MyOrders></MyOrders></BuyersRoute>
             },
             {
                 path: '/dashboard/buyers',
-                element: <AllBuyers></AllBuyers>
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             }
 
         ]

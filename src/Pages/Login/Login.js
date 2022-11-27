@@ -6,7 +6,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = (props) => {
 
-    const {login, providerLogin, userInfo} = useContext(AuthContext);
+    const {login, providerLogin} = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -21,8 +21,7 @@ const Login = (props) => {
          
         
         })
-        .catch(error => console.error(error));
-    
+        .catch(error => console.error(error)); 
       }
 
     const from = location.state?.from?.pathname || '/';
@@ -37,12 +36,13 @@ const Login = (props) => {
         .then( result => {
             const user = result.user;
             console.log(user);
-           
+            saveBuyer(form.email);
             navigate(from, {replace: true});
             form.reset();
         })
         .then(error => console.log(error));
     }
+
 
     
     const saveBuyer = (userInfo) => {
@@ -56,8 +56,19 @@ const Login = (props) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log('save buyer', data);
-            navigate('/');
+            getBuyerToken(userInfo.email);
+            
+        })
+    }
+    const getBuyerToken = email => {
+        fetch (`http://localhost:5000/jwt?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.accessToken){
+                localStorage.setItem('accessToken', data.accessToken);
+                navigate('/');
+                
+            }
         })
     }
 
@@ -74,13 +85,14 @@ const Login = (props) => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" placeholder="email" className="input input-bordered" />
+                            <input type="text" 
+                            name='email' placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" placeholder="password" className="input input-bordered" />
+                            <input type="password" name='password' placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>

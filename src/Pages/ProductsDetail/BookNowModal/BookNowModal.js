@@ -3,7 +3,7 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { toast } from "react-hot-toast";
 
 const BookNowModal = ({bookProduct, setBookProduct}) => {
-    const {product_name, picture, resalePrice } = bookProduct;
+    const {_id, product_name, picture, resalePrice } = bookProduct;
     const {user} = useContext(AuthContext);
 
     const handleBooking = event => {
@@ -24,7 +24,7 @@ const BookNowModal = ({bookProduct, setBookProduct}) => {
             email
         }
 
-        fetch('http://localhost:5000/bookings/:id', {
+        fetch(`http://localhost:5000/bookings/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
