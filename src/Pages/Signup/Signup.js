@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Signup = (props) => {
 
-    const {createUser, updateUser} = useContext(AuthContext);
+    const { createUser, updateUser} = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
 
     const location = useLocation;
@@ -23,7 +23,7 @@ const Signup = (props) => {
 
         setSignUpError('')
 
-        createUser(name, email, password)
+        createUser( email, password)
         .then(result => {
             const user = result.user;
 
@@ -32,15 +32,16 @@ const Signup = (props) => {
             console.log(user);
             navigate(from, {replace: true});
             const userInfo = {
-                displayName: form.name
+                displayName: name
             }
             updateUser(userInfo)
             .then(() => {
-                navigate('/')
+                saveUser(name, email)
             })
             .catch(err => console.log(err))
             form.reset();
         })
+       
 
         .catch(err => {
             console.error(err)
@@ -49,6 +50,22 @@ const Signup = (props) => {
         
     }
 
+    const saveUser = (name, email) => {
+        const user = {name, email};
+        fetch('http://localhost:5000/users',  {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('save user', data);
+            navigate('/');
+            
+        })
+    }
 
     return (
         <div>
@@ -89,7 +106,7 @@ const Signup = (props) => {
                                 <input className='btn btn-primary' type ="submit" value="Sign Up"/>
                             
                             </div>
-                            { signUpError && <p className='text-red-600'>{signUpError}</p>}
+                            {/* { signUpError && <p className='text-red-600'>{signUpError}</p>} */}
                         </form>
                     </div>
                 </div>

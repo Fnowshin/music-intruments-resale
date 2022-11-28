@@ -6,7 +6,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = (props) => {
 
-    const {login, providerLogin} = useContext(AuthContext);
+    const {login, providerLogin, userInfo} = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Login = (props) => {
         .then( result => {
             const user = result.user;
             console.log(user);
-            saveBuyer(form.email);
+            saveBuyer(userInfo);
             navigate(from, {replace: true});
             form.reset();
         })
@@ -56,21 +56,23 @@ const Login = (props) => {
         })
         .then(res => res.json())
         .then(data => {
-            getBuyerToken(userInfo.email);
+            console.log('save Buyer', data);
+            navigate('/');
+            // getBuyerToken(userInfo.email);
             
         })
     }
-    const getBuyerToken = email => {
-        fetch (`http://localhost:5000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data => {
-            if (data.accessToken){
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate('/');
+    // const getBuyerToken = email => {
+    //     fetch (`http://localhost:5000/jwt?email=${email}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         if (data.accessToken){
+    //             localStorage.setItem('accessToken', data.accessToken);
+    //             navigate('/');
                 
-            }
-        })
-    }
+    //         }
+    //     })
+    // }
 
     return (
         <div className="hero bg-primary h-[800px]">
