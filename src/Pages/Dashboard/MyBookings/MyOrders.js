@@ -11,7 +11,11 @@ const MyOrders = (props) => {
   const { data: bookings =[] } = useQuery({
     queryKey: ['bookings', user?.email],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     }
@@ -33,14 +37,15 @@ const MyOrders = (props) => {
           </thead>
           <tbody>
             {
-              bookings.map((booking, i )=>
-                <tr key={booking._id} className="hover">
-                  <th>{i+1}</th>
-                  <td>{booking.productName}</td>
-                  <td>{booking.price}</td>
-                  <td>Purple</td>
-                </tr>
-              )
+             bookings && 
+             bookings?.map((booking, i )=>
+             <tr key={booking._id} className="hover">
+               <th>{i+1}</th>
+               <td>{booking.productName}</td>
+               <td>{booking.price}</td>
+               <td>Purple</td>
+             </tr>
+           )
             }
 
           </tbody>

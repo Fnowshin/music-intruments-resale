@@ -25,7 +25,7 @@ const BookNowModal = ({bookProduct, setBookProduct}) => {
         }
 
         fetch(`http://localhost:5000/bookings/${_id}`, {
-            method: 'PATCH',
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },

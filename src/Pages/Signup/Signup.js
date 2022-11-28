@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import useToken from '../../Layout/hooks/useToken';
 
 
 const Signup = (props) => {
@@ -9,8 +10,15 @@ const Signup = (props) => {
     const { createUser, updateUser} = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
 
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail);
+
     const location = useLocation;
     const navigate = useNavigate();
+
+    if(token){
+        navigate('/');
+    }
 
     const from = location.state?.from?.pathname || '/';
 
@@ -61,8 +69,8 @@ const Signup = (props) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log('save user', data);
-            navigate('/');
+            setCreatedUserEmail(email);
+            
             
         })
     }
@@ -106,7 +114,7 @@ const Signup = (props) => {
                                 <input className='btn btn-primary' type ="submit" value="Sign Up"/>
                             
                             </div>
-                            {/* { signUpError && <p className='text-red-600'>{signUpError}</p>} */}
+                            { signUpError && <p className='text-red-600'>{signUpError}</p>}
                         </form>
                     </div>
                 </div>

@@ -5,10 +5,10 @@ import useAdmin from '../../Layout/hooks/useAdmin';
 
 const AdminRoute = ({children}) => {
     const { user, loading } = useContext(AuthContext);
-    const [isAdmin] =useAdmin(user?.email)
+    const [isAdmin, isAdminLoading] =useAdmin(user?.email)
     const location = useLocation();
 
-    if(loading){
+    if(loading || isAdminLoading){
         return <progress className="progress progress-warning w-56" value="40" max="100"></progress>
     }
 

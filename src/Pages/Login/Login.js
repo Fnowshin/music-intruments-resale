@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import {FcGoogle } from 'react-icons/fc'
 import { GoogleAuthProvider } from 'firebase/auth';
+import useToken from '../../Layout/hooks/useToken';
 
 const Login = (props) => {
 
     const {login, providerLogin, userInfo} = useContext(AuthContext);
+
+    const [loginUserEmail, setLoginEmailUser] = useState('');
+    const [token] = useToken(loginUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -26,6 +30,8 @@ const Login = (props) => {
 
     const from = location.state?.from?.pathname || '/';
 
+   
+
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -36,13 +42,15 @@ const Login = (props) => {
         .then( result => {
             const user = result.user;
             console.log(user);
-            saveBuyer(userInfo);
-            navigate(from, {replace: true});
+            setLoginEmailUser(email)
             form.reset();
         })
         .then(error => console.log(error));
     }
 
+    if (token) {
+        navigate(from, {replace: true});
+    }
 
     
     const saveBuyer = (userInfo) => {
@@ -56,23 +64,14 @@ const Login = (props) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log('save Buyer', data);
-            navigate('/');
-            // getBuyerToken(userInfo.email);
+           console.log(data);
+           navigate('/');
             
         })
+       
     }
-    // const getBuyerToken = email => {
-    //     fetch (`http://localhost:5000/jwt?email=${email}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         if (data.accessToken){
-    //             localStorage.setItem('accessToken', data.accessToken);
-    //             navigate('/');
-                
-    //         }
-    //     })
-    // }
+   
+    
 
     return (
         <div className="hero bg-primary h-[800px]">
