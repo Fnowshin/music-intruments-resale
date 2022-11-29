@@ -25,7 +25,7 @@ const BookNowModal = ({bookProduct, setBookProduct}) => {
             email
         }
 
-        fetch(`http://localhost:5000/bookings/${_id}`, {
+        fetch(`https://music-instrument-server.vercel.app/bookings/${_id}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

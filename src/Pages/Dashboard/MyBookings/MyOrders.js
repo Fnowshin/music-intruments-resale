@@ -6,7 +6,7 @@ const MyOrders = (props) => {
 
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://music-instrument-server.vercel.app/bookings?email=${user?.email}`;
 
   const { data: bookings =[] } = useQuery({
     queryKey: ['bookings', user?.email],
@@ -23,7 +23,7 @@ const MyOrders = (props) => {
 
   return (
     <section>
-      <div> <h1> My Orders </h1></div>
+      <div className='mt-8'> <h1 className='text-3xl font-semibold'> My Orders </h1></div>
       <div className="overflow-x-auto m-8">
         <table className="table w-full ">
 

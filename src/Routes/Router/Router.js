@@ -27,7 +27,7 @@ import PrivateRoute from "./PrivateRoute";
             {
                 path:'/productsdetail/:id',
                 element: <PrivateRoute><ProductsDetail></ProductsDetail></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://music-instrument-server.vercel.app/products/${params.id}`)
             },
             {
                 path:'/products',

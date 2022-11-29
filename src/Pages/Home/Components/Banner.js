@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import banner from '../../assets/images/banner.png';
 import backgroundimg from '../../assets/images/bg.jpg';
 
@@ -11,7 +12,7 @@ const Banner = (props) => {
                 <div>
                     <h2 className="text-5xl font-bold">Instruments In Your Budget </h2>
                     <p className="py-6"></p>
-                    <button className="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white">Get Started</button>
+                    <Link to='/login'><button className="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white">Get Started</button></Link>
                 </div>
             </div>
         </div>
