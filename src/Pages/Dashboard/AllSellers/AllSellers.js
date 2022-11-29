@@ -14,7 +14,7 @@ const AllSellers = (props) => {
     })
 
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -22,13 +22,31 @@ const AllSellers = (props) => {
         })
         .then(res => res.json())
         .then(data => {
-            if(data.modifiedCount > 0) {
-              toast.success('Admin Approved');
+            console.log(data);
               refetch();
-            }
+            
         })
       }
     
+
+    const handleDeleteUser = id => {
+      fetch(`http://localhost:5000/users/${id}`, {
+        method: 'DELETE', 
+        headers: {
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.deletedCount > 0 ){
+            refetch();
+            toast.success('Seller deleted successfully.')
+        }
+       
+      })
+    }
+    
+
     return (
         <section>
         <div> <h1> All Users/ Sellers </h1></div>
@@ -54,7 +72,7 @@ const AllSellers = (props) => {
                     <td>{user?.name}</td>
                     <td>{user.email}</td>
                     <td>{ user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-sm btn-primary'> Make Admin </button>}</td>
-                    <td><button className='btn btn-sm btn-danger'> Delete Buyer </button></td>
+                    <td><button  onClick={() => handleDeleteUser(user._id)}className='btn btn-sm btn-danger'> Delete Seller </button></td>
                   </tr>
                 )
               }
