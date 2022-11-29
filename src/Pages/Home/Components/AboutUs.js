@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import aboutbg from '../../assets/images/aboutbg.png'
+
 
 const AboutUs = (props) => {
     return (
@@ -14,14 +14,14 @@ const AboutUs = (props) => {
                     <div>
                         <div className="card-body items-center text-left">
                             <h2 className="card-title text-2xl font-bold">A community doing good</h2>
-                            <p>Etsy is a global online marketplace, where people come together to make, sell, buy and collect unique items. We’re also a community pushing for positive change for small businesses, people, and the planet.</p>
+                            <p>MusEnts is a global online marketplace, where people come together to make, sell, buy and collect unique items. We're also a community pushing for positive change for small businesses, people, and the planet.</p>
 
                         </div>
                     </div>
                     <div>
                         <div className="card-body items-center text-left">
                             <h2 className="card-title text-2xl font-bold">Support independent creators</h2>
-                            <p>There’s no Etsy warehouse – just millions of people selling the things they love. We make the whole process easy, helping you connect directly with makers to find something extraordinary.</p>
+                            <p>There's no MusEnts warehouse just millions of people selling the things they love. We make the whole process easy, helping you connect directly with makers to find something extraordinary.</p>
 
                         </div>
                     </div>
