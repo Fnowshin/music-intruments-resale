@@ -37,7 +37,7 @@ const AllBuyers = (props) => {
 
     return (
         <section>
-        <div> <h1> All Buyers  </h1></div>
+        <div className='mt-8'> <h1 className='text-3xl font-semibold'> All Buyers  </h1></div>
         <div className="overflow-x-auto m-8">
           <table className="table w-full ">
   

@@ -49,7 +49,7 @@ const AllSellers = (props) => {
 
     return (
         <section>
-        <div> <h1> All Users/ Sellers </h1></div>
+        <div className='mt-8'> <h1 className='text-3xl font-semibold'> All Users/ Sellers </h1></div>
         <div className="overflow-x-auto m-8">
           <table className="table w-full ">
   

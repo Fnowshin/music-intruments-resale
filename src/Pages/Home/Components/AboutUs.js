@@ -35,7 +35,7 @@ const AboutUs = (props) => {
 
                 </div>
                 <h1 className=' text-2xl font-semibold'> Have a question? Well, we’ve got some answers.</h1>
-                <Link to='/login'><button className="mt-6 mb-20 btn btn-outline rounded-full"> Go To Help Centr </button></Link>
+                <Link to='/login'><button className="mt-6 mb-20 btn btn-outline rounded-full"> Go To Help Center </button></Link>
             
         </div>
     );
