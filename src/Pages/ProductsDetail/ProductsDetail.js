@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import BookNowModal from './BookNowModal/BookNowModal';
 import ProductDetail from './ProductDetail';
 
@@ -24,6 +24,9 @@ const ProductsDetail = (props) => {
                         setBookProduct={setBookProduct}
                     ></ProductDetail>)
                 }
+            </div>
+            <div className='mt-20'>
+            <Link to='/products'><button className="btn btn-wide btn-secondary "> Back </button></Link>
             </div>
             {
                 bookProduct &&

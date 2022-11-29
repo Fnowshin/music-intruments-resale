@@ -17,6 +17,7 @@ const BookNowModal = ({bookProduct, setBookProduct}) => {
 
         const booking = {
             productName: product_name,
+            picture: picture,
             price: price,
             location: location,
             phone,

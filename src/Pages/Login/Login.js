@@ -31,7 +31,6 @@ const Login = (props) => {
     const from = location.state?.from?.pathname || '/';
 
    
-
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -45,12 +44,14 @@ const Login = (props) => {
             setLoginEmailUser(email)
             form.reset();
         })
+        
         .then(error => console.log(error));
+        if (token) {
+            navigate('/');
+        }
+    
     }
 
-    if (token) {
-        navigate(from, {replace: true});
-    }
 
     
     const saveBuyer = (userInfo) => {

@@ -15,7 +15,7 @@ const Categories = (props) => {
     })
 
     return (
-        <div className='mt-24'>
+        <div className='my-32'>
          <div className='text-center'>
             
             <h4 className='font-bold text-primary'> INSTRUMENT CATEGORIES </h4>

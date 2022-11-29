@@ -5,6 +5,7 @@ import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyBookings/MyOrders";
+import Categories from "../../Pages/Home/Components/Categories/Categories";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ProductsDetail from "../../Pages/ProductsDetail/ProductsDetail";
@@ -27,6 +28,10 @@ import PrivateRoute from "./PrivateRoute";
                 path:'/productsdetail/:id',
                 element: <PrivateRoute><ProductsDetail></ProductsDetail></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+            },
+            {
+                path:'/products',
+                element: <PrivateRoute><Categories></Categories></PrivateRoute>
             },
             {
                 path: '/login',

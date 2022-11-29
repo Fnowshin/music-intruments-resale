@@ -30,9 +30,11 @@ const MyOrders = (props) => {
           <thead>
             <tr>
               <th></th>
+              <th>Product </th>
               <th>Product Name</th>
               <th>Price </th>
               <th>Pay </th>
+              
             </tr>
           </thead>
           <tbody>
@@ -41,9 +43,19 @@ const MyOrders = (props) => {
              bookings?.map((booking, i )=>
              <tr key={booking._id} className="hover">
                <th>{i+1}</th>
+               <td>
+               <div className="flex items-center space-x-3">
+            <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+                <img src={booking.picture} alt="Tailwind CSS Component" />
+              </div>
+            </div>
+            </div>
+               </td>
+               
                <td>{booking.productName}</td>
                <td>{booking.price}</td>
-               <td>Purple</td>
+               <td><button className='btn btn-secondary'> Pay </button></td>
              </tr>
            )
             }
