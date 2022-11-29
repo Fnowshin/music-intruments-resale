@@ -44,8 +44,10 @@ const Header = (props) => {
                    {menuItems}
                 </ul>
                 </div>
+                <Link to='/'>
                 <img src={banner} width={70} alt="" />
-                <a className="btn btn-ghost normal-case text-xl">MusEnts </a>
+                </Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">MusEnts </Link>
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal p-0 text-secondary">

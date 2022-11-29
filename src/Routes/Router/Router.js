@@ -5,6 +5,7 @@ import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyBookings/MyOrders";
+import Blog from "../../Pages/Home/Components/Blog";
 import Categories from "../../Pages/Home/Components/Categories/Categories";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -40,6 +41,10 @@ import PrivateRoute from "./PrivateRoute";
             {
                 path: '/signup',
                 element:<Signup></Signup>
+            },
+            {
+                path: '/blogs',
+                element:<Blog></Blog>
             }
             
         ]
